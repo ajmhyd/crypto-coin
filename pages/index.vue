@@ -1,10 +1,22 @@
 <template>
   <div class="container">
     <TheHeroText />
-    <CoinList />
+    <TheSearchBar @update="setSearch($event)" />
+    <CoinList :search="search" />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      search: '',
+    }
+  },
+  methods: {
+    setSearch(value) {
+      this.search = value
+    },
+  },
+}
 </script>

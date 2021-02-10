@@ -23,7 +23,9 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12"
+    "fuse.js": "^6.4.6",
+    "nuxt": "^2.14.12",
+    "vue-virtual-scroller": "^1.0.10"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

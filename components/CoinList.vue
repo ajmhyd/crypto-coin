@@ -1,7 +1,19 @@
 <template>
   <div class="contianer mx-auto flex justify-center mt-8">
     <ul v-if="coinList.length">
-      <CoinListItem v-for="coin in coinList" :key="coin.id" :coin="coin" />
+      <div class="h-96">
+        <RecycleScroller
+          v-slot="{ item }"
+          class="scroller"
+          :items="searchedList"
+          :item-size="64"
+          key-field="id"
+        >
+          <div class="divide-y">
+            <CoinListItem :coin="item" />
+          </div>
+        </RecycleScroller>
+      </div>
     </ul>
     <button
       v-if="loading"
@@ -39,24 +51,65 @@
 </template>
 
 <script>
+import Fuse from 'fuse.js'
+import { RecycleScroller } from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+
+const options = {
+  threshold: 0.3,
+  distance: 10,
+  keys: ['name', 'symbol'],
+}
+
 export default {
+  components: {
+    RecycleScroller,
+  },
+  props: {
+    search: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       coinList: [],
       error: '',
+      loading: true,
+      tiesto: 'hello',
+      fuse: null,
+      searchedList: [],
     }
+  },
+  watch: {
+    search(value) {
+      if (value === '') {
+        this.searchedList = this.coinList
+      } else {
+        this.searchedList = this.fuse.search(value).map((item) => item.item)
+      }
+    },
   },
   async mounted() {
     try {
       this.error = null
       this.loading = true
       const coins = await this.$axios.$get('/tickers')
+      this.fuse = new Fuse(coins, options)
       this.coinList = coins
+      this.searchedList = coins
       this.loading = false
-      console.log(coins)
     } catch (error) {
       this.loading = false
     }
   },
 }
 </script>
+
+<style scoped>
+.scroller {
+  height: 100%;
+  width: calc(100vw - 32px);
+  margin: auto;
+}
+</style>
