@@ -1,29 +1,49 @@
 <template>
   <div class="contianer mx-auto flex justify-center mt-8">
     <ul v-if="coinList.length">
+      <div
+        class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+      >
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr class="flex justify-between">
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Name
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Price (+/- 1h)
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Rank
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
       <div class="h-96">
         <RecycleScroller
           v-slot="{ item }"
           class="scroller"
-          :items="searchedList"
+          :items="coinList"
           :item-size="64"
           key-field="id"
         >
-          <div class="divide-y">
-            <CoinListItem :coin="item" />
+          <div class="divide-y" @click="$emit('updateCoin', item)">
+            <CoinListItem :coin="item" @updateCoin="updateCoin($event)" />
           </div>
         </RecycleScroller>
       </div>
     </ul>
-    <button
-      v-if="loading"
-      type="button"
-      class="animate-pulse inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-      disabled
-    >
-      Loading...
-    </button>
-    <div v-if="error" class="rounded-md bg-red-50 p-4">
+    <div v-else class="rounded-md bg-red-50 p-4 max-w-lg">
       <div class="flex">
         <div class="flex-shrink-0">
           <svg
@@ -42,7 +62,7 @@
         </div>
         <div class="ml-3">
           <h3 class="text-sm font-medium text-red-800">
-            Error fetching data. Please reload the page.
+            No coins matched your search. Please try again.
           </h3>
         </div>
       </div>
@@ -51,57 +71,21 @@
 </template>
 
 <script>
-import Fuse from 'fuse.js'
 import { RecycleScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-
-const options = {
-  threshold: 0.3,
-  distance: 10,
-  keys: ['name', 'symbol'],
-}
 
 export default {
   components: {
     RecycleScroller,
   },
   props: {
-    search: {
-      type: String,
-      default: '',
+    coinList: {
+      type: Array,
+      required: true,
+      default() {
+        return []
+      },
     },
-  },
-  data() {
-    return {
-      coinList: [],
-      error: '',
-      loading: true,
-      tiesto: 'hello',
-      fuse: null,
-      searchedList: [],
-    }
-  },
-  watch: {
-    search(value) {
-      if (value === '') {
-        this.searchedList = this.coinList
-      } else {
-        this.searchedList = this.fuse.search(value).map((item) => item.item)
-      }
-    },
-  },
-  async mounted() {
-    try {
-      this.error = null
-      this.loading = true
-      const coins = await this.$axios.$get('/tickers')
-      this.fuse = new Fuse(coins, options)
-      this.coinList = coins
-      this.searchedList = coins
-      this.loading = false
-    } catch (error) {
-      this.loading = false
-    }
   },
 }
 </script>

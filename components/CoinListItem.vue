@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a href="#" class="block hover:bg-gray-50">
+    <a class="block hover:bg-gray-50 cursor-pointer">
       <div class="flex items-center px-4 py-4 sm:px-6">
         <div class="min-w-0 flex-1 flex items-center">
           <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
@@ -72,6 +72,7 @@ export default {
   props: {
     coin: {
       type: Object,
+      required: true,
       default() {
         return {
           symbol: '',
