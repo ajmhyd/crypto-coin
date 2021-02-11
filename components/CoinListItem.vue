@@ -3,7 +3,7 @@
     <a class="block hover:bg-gray-50 cursor-pointer">
       <div class="flex items-center px-4 py-4 sm:px-6">
         <div class="min-w-0 flex-1 flex items-center">
-          <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+          <div class="min-w-0 flex-1 px-4 grid grid-cols-2 gap-4">
             <div>
               <p class="text-sm font-medium text-green-600 truncate">
                 {{ coin.name }}
@@ -12,7 +12,7 @@
                 <span class="truncate">{{ coin.symbol }}</span>
               </p>
             </div>
-            <div class="hidden md:block">
+            <div class="block">
               <div>
                 <p class="text-sm text-gray-900">
                   {{ price }}
