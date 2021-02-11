@@ -102,7 +102,7 @@
 import Fuse from 'fuse.js'
 
 const options = {
-  threshold: 0.3,
+  threshold: 0.4,
   distance: 10,
   keys: ['name', 'symbol'],
 }
