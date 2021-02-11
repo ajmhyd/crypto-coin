@@ -11,9 +11,9 @@ View App [Here](https://crypto-coin.vercel.app/)
 ## Built With
 
 - [Nuxt.js](https://nuxtjs.org/) - The Intuitive Vue Framework.
-- [Tailwind CSS](https://chakra-ui.com/) - a simple, modular and accessible component library.
-- [Vercel](https://vercel.com/) - a cloud platform for static sites and Serverless Functions that fits perfectly with your workflow
-- [Coinpaprika](https://coinpaprika.com/api/) - free professional cryptocurrency api
+- [Tailwind CSS](https://chakra-ui.com/) - A simple, modular and accessible component library.
+- [Vercel](https://vercel.com/) - A cloud platform for static sites and Serverless Functions that fits perfectly with your workflow.
+- [Coinpaprika](https://coinpaprika.com/api/) - Free professional cryptocurrency api.
 
 ## Authors
 
