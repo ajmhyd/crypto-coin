@@ -2,6 +2,12 @@
 
 Get up to date information about your favorite crypto currencies.
 
+![](https://media.giphy.com/media/d2iOmmh1MbqlEVOZmO/giphy.gif)
+
+## Getting Started
+
+View App [Here](https://crypto-coin.vercel.app/)
+
 ## Built With
 
 - [Nuxt.js](https://nuxtjs.org/) - The Intuitive Vue Framework.
