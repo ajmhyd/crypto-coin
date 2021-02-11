@@ -41,7 +41,8 @@ export default {
   modules: ['@nuxtjs/axios'],
 
   axios: {
-    baseURL: 'https://api.coinpaprika.com/v1/', // Used as fallback if no runtime config is provided
+    baseURL:
+      'https://api.allorigins.win/raw?url=https://api.coinpaprika.com/v1/', // Used as fallback if no runtime config is provided
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
