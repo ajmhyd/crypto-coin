@@ -1,5 +1,22 @@
 # crypto-coin
 
+Get up to date information about your favorite crypto currencies.
+
+## Built With
+
+- [Nuxt.js](https://nuxtjs.org/) - The Intuitive Vue Framework.
+- [Tailwind CSS](https://chakra-ui.com/) - a simple, modular and accessible component library.
+- [Vercel](https://vercel.com/) - a cloud platform for static sites and Serverless Functions that fits perfectly with your workflow
+- [Coinpaprika](https://coinpaprika.com/api/) - free professional cryptocurrency api
+
+## Authors
+
+Alex Matseshe
+
+## License
+
+[MIT](LICENSE)
+
 ## Build Setup
 
 ```bash
